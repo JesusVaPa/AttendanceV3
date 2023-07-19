@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import re
+from data.database.student import Student
 
 class Students(tk.Frame):
     def __init__(self, parent):
@@ -33,7 +34,7 @@ class Students(tk.Frame):
             messagebox.showerror("Invalid Email", "Please enter a valid email address.")
             return
 
-        # Save the form data (not implemented in this example)
-        # Replace this with your actual save function
+        myStudent = Student(first_name, last_name, email)
+        Student.postStudent(myStudent)
 
         messagebox.showinfo("Success", "Form data has been saved successfully.")
