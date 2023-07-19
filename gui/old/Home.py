@@ -19,6 +19,11 @@ def go_reports():
     subprocess.Popen(["python", "Code\Reports.py"])
     window.destroy()
 
+def go_management():
+# Open the "Management.py" script in a new process and destroy the current window
+    subprocess.Popen(["python", "Code\Management.py"])
+    window.destroy()
+
 # Create the main window
 window = tk.Tk()
 window.title("My GUI")
@@ -39,32 +44,17 @@ font_style = Font(family="Arial", size=16)
 font_style_footer = Font(family="Arial", size=8)
 
 # Create buttons for HOME, ATTENDANCE, and REPORTS
-home_button = tk.Button(navigation_frame, text="HOME", relief="flat", highlightthickness=0, font=font_style, command=go_home)
+home_button = tk.Button(navigation_frame, text="HOME", relief="flat", bg="white", highlightthickness=0, font=font_style, command=go_home)
 home_button.grid(row=0, column=0, padx=30, pady=5)
 
-attendance_button = tk.Button(navigation_frame, text="ATTENDANCE", relief="flat", highlightthickness=0, font=font_style, command=go_attendance)
+attendance_button = tk.Button(navigation_frame, text="ATTENDANCE", relief="flat", bg="white", highlightthickness=0, font=font_style, command=go_attendance)
 attendance_button.grid(row=0, column=1, padx=30, pady=5)
 
-reports_button = tk.Button(navigation_frame, text="REPORTS", relief="flat", highlightthickness=0, font=font_style, command=go_reports)
+reports_button = tk.Button(navigation_frame, text="REPORTS", relief="flat", bg="white", highlightthickness=0, font=font_style, command=go_reports)
 reports_button.grid(row=0, column=2, padx=30, pady=5)
 
-# Create a list menu for MANAGEMENT
-management_menu = tk.Menu(navigation_frame, tearoff=0)
-management_menu.configure(font=font_style)
-management_menu.add_command(label="STUDENTS")
-management_menu.add_command(label="COURSES")
-
-management_menu_button = ttk.Menubutton(navigation_frame, text="MANAGEMENT")
-management_menu_button.grid(row=0, column=3, padx=30, pady=5)
-
-# Configure the style for the menu button and menu items
-style = ttk.Style()
-style.configure('TMenubutton', font=font_style)
-style.configure('TMenubutton', padding=(10, 5))
-style.configure('TMenubutton.TLabel', font=font_style, padding=(10, 5))  # Update the padding here
-
-management_menu_button.configure(menu=management_menu, style='TMenubutton')
-management_menu_button.configure(compound="left", image="", style="TMenubutton.TLabel")
+management_button = tk.Button(navigation_frame, text="MANAGEMENT", relief="flat", bg="white", highlightthickness=0, font=font_style, command=go_management)
+management_button.grid(row=0, column=3, padx=30, pady=5)
 
 welcome_image = Image.open("Media\LaSalleGRTGF.jpg")
 welcome_image = welcome_image.resize((1580, 650))
