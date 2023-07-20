@@ -1,10 +1,11 @@
 import tkinter as tk
-from PIL import ImageTk, Image
-from students import Students
+from PIL import ImageTk
+from tkinter.font import Font
 from home import Home
+from students import Students
 from attendance import Attendance
 from management import Management
-from tkinter.font import Font
+
 
 # Inform here all pages that you want to show.
 pages = [
@@ -46,12 +47,12 @@ class App(tk.Tk):
         nav_bar.grid(row=0, column=1, sticky="ew")
 
         # Create font styles
-        font_buttons = Font(family="Arial", size=15)
+        font_buttons = Font(family="Arial", size=20)
 
         # Create navigation buttons
         self.buttons = self.create_buttons(nav_bar, pages, font_buttons)
         for i, button in enumerate(self.buttons):
-            button.grid(row=0, column=i, padx=10, pady=33)
+            button.grid(row=0, column=i, padx=10, pady=25)
 
         # Create the image frame (bottom part)
         image_frame = tk.Frame(container)
@@ -95,8 +96,6 @@ class App(tk.Tk):
         self.current_frame = self.frames[label]
         self.current_frame.grid(row=0, column=0, sticky="nsew")
         
-        
-
 if __name__ == "__main__":
     app = App()
     app.mainloop()

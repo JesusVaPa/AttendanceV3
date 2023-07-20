@@ -4,6 +4,8 @@ gui/__init__.py
 gui/app.py
 gui/home.py
 gui/students.py
+gui/management.py
+gui/attendance.py
 my_package.egg-info/PKG-INFO
 my_package.egg-info/SOURCES.txt
 my_package.egg-info/dependency_links.txt
