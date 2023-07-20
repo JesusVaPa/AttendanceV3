@@ -1,11 +1,13 @@
-from data.database.DataBase import *
+from database.DataBase import *
 
-class Student:
+class Student_Model:
     def __init__(self, fname, lname, email):
         self.first_name = fname
         self.last_name = lname
         self.email = email
-
+    def main() -> None:
+        print('')
+        
 #Students
     def getStudents():
         query = "select * from Students;"
@@ -32,7 +34,7 @@ class Student:
         cursor.execute(query)
         cnx.commit()
         id = cursor.lastrowid
-        newStudent = Student.getStudentByID(id)
+        newStudent = Student_Model.getStudentByID(id)
         cursor.close()
         #cnx.close()
         return newStudent
@@ -42,7 +44,7 @@ class Student:
         cursor = cnx.cursor()
         cursor.execute(query)
         cnx.commit()
-        newStudent = Student.getStudentByID(id)
+        newStudent = Student_Model.getStudentByID(id)
         cursor.close()
         #cnx.close()
         return newStudent
@@ -56,3 +58,5 @@ class Student:
         #cnx.close()
         return True
    
+if __name__ == "__main__":
+    main()

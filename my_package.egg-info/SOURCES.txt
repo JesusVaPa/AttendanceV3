@@ -1,5 +1,9 @@
 README.md
 setup.py
+data/__init__.py
+database/DataBase.py
+database/__init__.py
+database/student_model.py
 gui/__init__.py
 gui/app.py
 gui/attendance.py
