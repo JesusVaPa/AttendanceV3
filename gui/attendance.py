@@ -12,9 +12,9 @@ class Attendance(tk.Frame):
 
         font_style_start = Font(family="Arial", size=25)
 # Create a centered button for starting recognition
-        button = tk.Button(self, text="START", font=font_style_start, command=start_recognition)
+        button = tk.Button(self, text="START", bg="red", fg="white", font=font_style_start, command=start_recognition)
         button.place(relx=0.5, rely=0.5, anchor="center")
-        
+      
         
 
         

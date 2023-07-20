@@ -30,6 +30,11 @@ cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 faceClassif = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
+# Define a variable to store the recognized name
+recognized_name = ""
+previous_name = ""
+name_changed = False
+
 while True:
     ret, frame = cap.read()
     if ret == False:
@@ -45,20 +50,30 @@ while True:
         result = face_recognizer.predict(visage)
 
         cv2.putText(frame, '{}'.format(result), (x, y - 5), 1, 1.3, (255, 255, 0), 1, cv2.LINE_AA)
-        
+
         if result[1] < 70:
-            cv2.putText(frame,'{}'.format(imagePaths[result[0]]),(x,y-25),2,1.1,(0,255,0),1,cv2.LINE_AA)
-            cv2.rectangle(frame, (x,y),(x+w,y+h),(0,255,0),2)
-            
+            recognized_name = imagePaths[result[0]]  
+            cv2.putText(frame, '{}'.format(recognized_name), (x, y - 25), 2, 1.1, (0, 255, 0), 1, cv2.LINE_AA)
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+            if recognized_name != previous_name:
+                print(recognized_name)
+                previous_name = recognized_name
+                name_changed = True
         else:
-               cv2.putText(frame,'Desconocido',(x,y-20),2,0.8,(0,0,255),1,cv2.LINE_AA)
-               cv2.rectangle(frame, (x,y),(x+w,y+h),(0,0,255),2)
+            recognized_name = "Unknown"  
+            cv2.putText(frame, recognized_name, (x, y - 20), 2, 0.8, (0, 0, 255), 1, cv2.LINE_AA)
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
+
+            if name_changed:
+                previous_name = recognized_name
+                name_changed = False
 
     cv2.imshow('frame', frame)
     k = cv2.waitKey(1)
     
     if k == 27:
         break
-    
+
 cap.release()
 cv2.destroyAllWindows()

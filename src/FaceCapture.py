@@ -2,8 +2,8 @@ import cv2
 import os
 import imutils
 
-personName = 'Losss'
-dataPath = 'Data' 
+personName = 'Test'
+dataPath = "Data" 
 personPath = dataPath + '/' + personName
 
 if not os.path.exists(personPath):
