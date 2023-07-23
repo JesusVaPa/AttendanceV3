@@ -1,6 +1,5 @@
 import tkinter as tk
 from PIL import ImageTk, Image
-from tkinter.font import Font
 
 class Home(tk.Frame):
     def __init__(self, parent):
@@ -13,6 +12,8 @@ class Home(tk.Frame):
         # Create a label to display the image
         welcome_label = tk.Label(self, image=self.welcome_image, bg="white")
         welcome_label.place(relx=-0.01, rely=0)
+        
+
 
         
        
