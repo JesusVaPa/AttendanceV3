@@ -2,39 +2,62 @@ import tkinter as tk
 from tkinter import messagebox
 import re
 from database.student_model import Student_Model
+from tkinter.font import Font
+from student_add import Students_Add
+from students_list import Students_List
 
+pages = [
+    {"label": "All Students", "frame": Students_List},
+    {"label": "Add new Student", "frame": Students_Add}
+]
 class Students(tk.Frame):
+
     def __init__(self, parent):
         super().__init__(parent)
 
-# Create Labels
-        tk.Label(self, text="First Name:").grid(row=0, column=0, padx=10, pady=5)
-        tk.Label(self, text="Last Name:").grid(row=1, column=0, padx=10, pady=5)
-        tk.Label(self, text="Email:").grid(row=2, column=0, padx=10, pady=5)
+        self.current_frame = None
+        # Create font styles
+        font_buttons = Font(family="Arial", size=15)
 
-# Create Entry fields
-        self.first_name_entry = tk.Entry(self)
-        self.last_name_entry = tk.Entry(self)
-        self.email_entry = tk.Entry(self)
-        self.first_name_entry.grid(row=0, column=1, padx=10, pady=5)
-        self.last_name_entry.grid(row=1, column=1, padx=10, pady=5)
-        self.email_entry.grid(row=2, column=1, padx=10, pady=5)
+        # Create a container frame for the buttons
+        container = tk.Frame(self)
+        container.grid(sticky="nsew")
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(0, weight=1)
 
-# Create Save button
-        tk.Button(self, text="Save", command=self.on_save).grid(row=3, column=0, columnspan=2, padx=10, pady=10)
+        # Create the navigation bar frame
+        nav_bar = tk.Frame(container, bg="white")
+        nav_bar.grid(row=0, column=0, sticky="ew")
 
-    def on_save(self):
-        first_name = self.first_name_entry.get()
-        last_name = self.last_name_entry.get()
-        email = self.email_entry.get()
+        # Create navigation buttons
+        tk.Button(nav_bar, text="All Students", relief="flat", bg="white", font=font_buttons, command=lambda l="All Students": self.on_button_click(l)).grid(row=0, column=1, padx=10, pady=10)
+        tk.Button(nav_bar, text="Add new Student", relief="flat", bg="white", font=font_buttons, command=lambda l="Add new Student": self.on_button_click(l)).grid(row=0, column=2, padx=10, pady=10)
 
-        # Email validation using regular expression
-        email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-        if not re.match(email_pattern, email):
-            messagebox.showerror("Invalid Email", "Please enter a valid email address.")
-            return
 
-        myStudent = Student_Model(first_name, last_name, email)
-        Student_Model.postStudent(myStudent)
+        # Create the image frame (bottom part)
+        image_frame = tk.Frame(container)
+        image_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
+        image_frame.grid_rowconfigure(0, weight=1)
+        image_frame.grid_columnconfigure(0, weight=1)
 
-        messagebox.showinfo("Success", "Form data has been saved successfully.")
+        self.frames = {}
+        for page in pages:
+            label = page["label"]
+            frame_class = page["frame"]
+            self.frames[label] = frame_class(image_frame)
+        
+        # Show the first frame initially  
+        self.show_frame("All Students")
+
+    def on_button_click(self, label):
+        self.show_frame(label)
+
+    def show_frame(self, label):
+        Students_List.update_students_list(self.frames["All Students"])
+        if self.current_frame:
+            self.current_frame.grid_forget()
+        self.current_frame = self.frames[label]
+        self.current_frame.grid(row=0, column=0, sticky="nsew")
+            
+
+           
