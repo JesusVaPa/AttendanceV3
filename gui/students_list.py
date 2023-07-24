@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from database.student_model import Student_Model
+from src.FaceCapture import face_capture
 
 class Students_List(tk.Frame):
        
@@ -14,7 +15,8 @@ class Students_List(tk.Frame):
             tk.Label(self, text = student[3]).grid(row=1 + index, column=7, padx=10, pady=5)
             #tk.Button(self, text="Edit", command="").grid(row=1 + index, column=8, padx=10, pady=10)
             tk.Button(self, text="Delete", command=lambda l=student[0]: self.delete_student(l)).grid(row=1 + index, column=9, padx=10, pady=10)
-            tk.Button(self, text="Capture Face", command="").grid(row=1 + index, column=10, padx=10, pady=10)
+            folder_name = student[2] + ' ' + student[1]
+            tk.Button(self, text="Capture Face", command=lambda l=folder_name:face_capture(l)).grid(row=1 + index, column=10, padx=10, pady=10)
     
     def remove_all_rows(self):
         for row in range(1, 50):

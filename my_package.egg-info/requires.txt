@@ -1,2 +1,2 @@
-tkinter
-requests
+opencv-python
+imutils
