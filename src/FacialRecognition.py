@@ -2,6 +2,8 @@ import cv2
 import os
 import ctypes
 
+
+recognized_names = set([])
 dataPath = "Data"
 imagePaths = os.listdir(dataPath)
 print('imagePaths=', imagePaths)
@@ -57,7 +59,8 @@ while True:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
             if recognized_name != previous_name:
-                print(recognized_name)
+                recognized_names.add(recognized_name)
+                print(recognized_names)
                 previous_name = recognized_name
                 name_changed = True
         else:
