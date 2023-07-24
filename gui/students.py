@@ -4,11 +4,13 @@ import re
 from database.student_model import Student_Model
 from tkinter.font import Font
 from student_add import Students_Add
+from student_edit import Students_Edit
 from students_list import Students_List
 
 pages = [
     {"label": "All Students", "frame": Students_List},
-    {"label": "Add new Student", "frame": Students_Add}
+    {"label": "Add new Student", "frame": Students_Add},
+    {"label": "Edit Student", "frame": Students_Edit}
 ]
 class Students(tk.Frame):
 
@@ -32,6 +34,7 @@ class Students(tk.Frame):
         # Create navigation buttons
         tk.Button(nav_bar, text="All Students", relief="flat", bg="white", font=font_buttons, command=lambda l="All Students": self.on_button_click(l)).grid(row=0, column=1, padx=10, pady=10)
         tk.Button(nav_bar, text="Add new Student", relief="flat", bg="white", font=font_buttons, command=lambda l="Add new Student": self.on_button_click(l)).grid(row=0, column=2, padx=10, pady=10)
+        tk.Button(nav_bar, text="Edit Student", relief="flat", bg="white", font=font_buttons, command=lambda l="Edit Student": self.on_button_click(l)).grid(row=0, column=3, padx=10, pady=10)
 
 
         # Create the image frame (bottom part)

@@ -3,6 +3,7 @@ from tkinter import messagebox
 import re
 from database.student_model import Student_Model
 from students_list import Students_List
+from student_edit import Students_Edit
 
 class Students_Add(tk.Frame):
     def on_save(self):
@@ -21,6 +22,7 @@ class Students_Add(tk.Frame):
 
         messagebox.showinfo("Success", "Student has been saved successfully.")
         Students_List.update_students_list
+        Students_Edit.list_students
 
     def __init__(self, parent):
         super().__init__(parent)
