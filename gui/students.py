@@ -1,11 +1,8 @@
 import tkinter as tk
-from tkinter import messagebox
-import re
-from database.student_model import Student_Model
 from tkinter.font import Font
 from student_add import Students_Add
-from student_edit import Students_Edit
-from students_list import Students_List
+from  student_edit import Students_Edit
+from  students_list import Students_List
 
 pages = [
     {"label": "All Students", "frame": Students_List},
