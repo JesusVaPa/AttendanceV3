@@ -30,7 +30,7 @@ class App(tk.Tk):
         container = tk.Frame(self)
         container.grid(sticky="nsew")
         self.grid_rowconfigure(0, weight=1)
-        self.grid_columnconfigure(0, weight=1)
+        self.grid_columnconfigure(0, weight=1)  
 
         # Add a white stripe frame behind the logo
         logo_stripe = tk.Frame(container, bg="white", height=100)
