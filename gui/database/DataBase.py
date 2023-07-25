@@ -3,9 +3,9 @@ import mysql.connector
 cnx = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="!Priscilla1",
+    password="Masterof123!",
     database="attendance",
-    port=3310
+    port=3306
 )
 
 # class DataBase:

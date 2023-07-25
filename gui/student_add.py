@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from tkinter.font import Font
 import re
 from database.student_model import Student_Model
 from students_list import Students_List
@@ -29,18 +30,20 @@ class Students_Add(tk.Frame):
 
 # Create Labels
     #new student Form
-        tk.Label(self, text="First Name:").grid(row=0, column=0, padx=10, pady=5)
-        tk.Label(self, text="Last Name:").grid(row=1, column=0, padx=10, pady=5)
-        tk.Label(self, text="Email:").grid(row=2, column=0, padx=10, pady=5)
+        column_font = Font(family='Arial', size=15)
+
+        tk.Label(self, text="First Name:", font=column_font).grid(row=0, column=0, padx=10, pady=5)
+        tk.Label(self, text="Last Name:", font=column_font).grid(row=1, column=0, padx=10, pady=5)
+        tk.Label(self, text="Email:", font=column_font).grid(row=2, column=0, padx=10, pady=5)
 
 
 # Create Entry fields
-        self.first_name_entry = tk.Entry(self)
-        self.last_name_entry = tk.Entry(self)
-        self.email_entry = tk.Entry(self)
+        self.first_name_entry = tk.Entry(self, font=column_font, justify="center")
+        self.last_name_entry = tk.Entry(self, font=column_font, justify="center")
+        self.email_entry = tk.Entry(self, font=column_font, justify="center")
         self.first_name_entry.grid(row=0, column=1, padx=10, pady=5)
         self.last_name_entry.grid(row=1, column=1, padx=10, pady=5)
         self.email_entry.grid(row=2, column=1, padx=10, pady=5)
 
 # Create Save button
-        tk.Button(self, text="Save", command=self.on_save).grid(row=3, column=0, columnspan=2, padx=10, pady=10)
+        tk.Button(self, text="Add", font=column_font, bg='#3fde31', command=self.on_save).grid(row=3, column=0, columnspan=2, padx=60, pady=10)
