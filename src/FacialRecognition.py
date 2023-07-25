@@ -60,7 +60,7 @@ def recognize_faces():
 
                 if recognized_name != previous_name:
                     recognized_names.add(recognized_name)
-                    print(recognized_names)
+                    #print(recognized_names)
                     previous_name = recognized_name
                     name_changed = True
             else:
