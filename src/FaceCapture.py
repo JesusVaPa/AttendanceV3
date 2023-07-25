@@ -3,10 +3,10 @@ import os
 import imutils
 from tkinter import messagebox
 
-def face_capture(name):
-	personName = name
+def face_capture(id):
+	
 	dataPath = "Data" 
-	personPath = dataPath + '/' + personName
+	personPath = dataPath + '/' + str(id)
 
 	if not os.path.exists(personPath):
 		print('User Added: ',personPath)

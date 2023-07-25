@@ -15,7 +15,7 @@ class Students_List(tk.Frame):
             tk.Label(self, text = student[3]).grid(row=1 + index, column=7, padx=10, pady=5)
             #tk.Button(self, text="Edit", command="").grid(row=1 + index, column=8, padx=10, pady=10)
             tk.Button(self, text="Delete", command=lambda l=student[0]: self.delete_student(l)).grid(row=1 + index, column=9, padx=10, pady=10)
-            folder_name = student[2] + '_' + student[1]
+            folder_name = student[0]
             tk.Button(self, text="Capture Face", command=lambda l=folder_name:face_capture(l)).grid(row=1 + index, column=10, padx=10, pady=10)
     
     def remove_all_rows(self):
